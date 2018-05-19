@@ -7,6 +7,7 @@ public class MainTela extends javax.swing.JFrame {
     private String textoPrincipal = "0";
     private double firstNumber;
     private double secondNumber;
+    private boolean dotIsUsed = false;
     
     public MainTela() {
         
@@ -323,7 +324,8 @@ public class MainTela extends javax.swing.JFrame {
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPontoActionPerformed
-        // TODO add your handling code here:
+        dotIsUsed = true;
+        addNumber(".");
     }//GEN-LAST:event_btnPontoActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -418,32 +420,42 @@ public class MainTela extends javax.swing.JFrame {
             
         }
         
-        updateMainText();
+        updateComponents();
         
     }
     
     private void rmNumber(){
 
+        char lastChar = textoPrincipal.charAt(textoPrincipal.length()-1);
+        
+        if(lastChar == '.'){
+            dotIsUsed = false;
+        }
+        
         textoPrincipal = textoPrincipal.substring(0, textoPrincipal.length()-1);
-        updateMainText();
+        updateComponents();
         
     }
 
-    private void updateMainText(){
+    private void updateComponents(){
         
         if(textoPrincipal.isEmpty()){
             textoPrincipal = "0";
         }
-        
         textFieldMain.setText(textoPrincipal);
+        btnPonto.setEnabled(!dotIsUsed);
         
     }
+    
+    
     
     private void clear(){
         
         textoPrincipal = "";
-        updateMainText();
+        dotIsUsed = false;
+        updateComponents();
         
     }
+    
     
 }
