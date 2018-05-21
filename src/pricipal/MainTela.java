@@ -5,8 +5,10 @@ package pricipal;
 public class MainTela extends javax.swing.JFrame {
 
     private String textoPrincipal = "0";
+    
     private double firstNumber;
     private double secondNumber;
+    
     private boolean dotIsUsed = false;
     
     public MainTela() {
@@ -43,6 +45,8 @@ public class MainTela extends javax.swing.JFrame {
         btnCalcular = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Calculadora");
+        setResizable(false);
 
         textFieldMain.setFont(new java.awt.Font("Dialog", 0, 52)); // NOI18N
         textFieldMain.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -333,19 +337,19 @@ public class MainTela extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnSomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSomaActionPerformed
-        // TODO add your handling code here:
+        makeOperation("+");
     }//GEN-LAST:event_btnSomaActionPerformed
 
     private void btnSubtracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubtracaoActionPerformed
-        // TODO add your handling code here:
+        makeOperation("-");
     }//GEN-LAST:event_btnSubtracaoActionPerformed
 
     private void btnMultiplicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicacaoActionPerformed
-        // TODO add your handling code here:
+        makeOperation("x");
     }//GEN-LAST:event_btnMultiplicacaoActionPerformed
 
     private void btnDivisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivisaoActionPerformed
-        // TODO add your handling code here:
+        makeOperation("/");
     }//GEN-LAST:event_btnDivisaoActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
@@ -447,8 +451,6 @@ public class MainTela extends javax.swing.JFrame {
         
     }
     
-    
-    
     private void clear(){
         
         textoPrincipal = "";
@@ -457,5 +459,12 @@ public class MainTela extends javax.swing.JFrame {
         
     }
     
+    private void makeOperation(String operator){
+        
+        dotIsUsed = false;
+        textoPrincipal += operator;
+        updateComponents();
+        
+    }
     
 }
