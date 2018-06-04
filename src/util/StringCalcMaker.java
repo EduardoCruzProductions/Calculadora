@@ -1,52 +1,100 @@
-
 package util;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class StringCalcMaker {
-    
+
     public static final String SUBTRACAO = "-";
     public static final String SOMA = "+";
     public static final String DIVISAO = "/";
     public static final String MULTIPLICACAO = "x";
-    
-    public double singleCalc(String exp){
-        
+
+    public double singleOperation(String exp) throws Exception{
+
         String operador = "";
-        
+
         for (int i = 0; i < exp.length(); i++) {
-            
+
             char c = exp.charAt(i);
+            operador = getOperador(c);
             
-            if(c == SUBTRACAO.charAt(0)){
-            
-                operador = SUBTRACAO;
+            if(operador != null){
+                
                 break;
                 
-            }else if(c == DIVISAO.charAt(0)){
-                
-                operador = DIVISAO;
-                break;
-                
-            }else if(c == MULTIPLICACAO.charAt(0)){
-                
-                operador = MULTIPLICACAO;
-                break;
-                
-            }else if(c == SOMA.charAt(0)){
-                
-                operador = SOMA;
-                break;
-            
             }
             
         }
+
+        if(operador.isEmpty()){
+            
+            throw new Exception("Operador não encontrado");
+            
+        }else{
         
-        String[] numbers = exp.split(operador);
+            
+            double[] numbers = convertArrayStringToDouble(exp.split("\\"+operador));
+            DoubleArrayOperator dao = new DoubleArrayOperator();
+            
+            switch(operador){
+                
+                case SOMA:
+                    return dao.somaArray(numbers);
+                    
+                case SUBTRACAO:
+                    return dao.subtrairArray(numbers);
+                    
+                case MULTIPLICACAO:
+                    return dao.multiplicarArray(numbers);
+                    
+                case DIVISAO:
+                    return dao.dividirArray(numbers);
+             
+                default:
+                    throw new Exception("Operador não encontrado");
+                    
+            }
         
-        return 0.d;
+        }
+        
+    }
+
+    private double[] convertArrayStringToDouble(String[] arrayString) throws Exception{
+        
+        double[] arrayDouble = new double[arrayString.length];
+        
+        for (int i = 0; i < arrayString.length; i++) {
+            
+            arrayDouble[i] = Double.parseDouble(arrayString[i]);
+            
+        }
+        
+        return arrayDouble;
         
     }
     
+    private String getOperador(char c) {
+
+        if (c == SUBTRACAO.charAt(0)) {
+
+            return SUBTRACAO;
+
+        } else if (c == DIVISAO.charAt(0)) {
+
+            return DIVISAO;
+
+        } else if (c == MULTIPLICACAO.charAt(0)) {
+
+            return MULTIPLICACAO;
+
+        } else if (c == SOMA.charAt(0)) {
+
+            return SOMA;
+
+        }else{
+            
+            return null;
+            
+        }
+
+    }
+
 }
