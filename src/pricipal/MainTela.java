@@ -3,18 +3,10 @@ package pricipal;
 
 
 public class MainTela extends javax.swing.JFrame {
-
-    private String textoPrincipal = "0";
-    
-    private double firstNumber;
-    private double secondNumber;
-    
-    private boolean dotIsUsed = false;
     
     public MainTela() {
         
         initComponents();
-        textFieldMain.setEditable(false);
         
     }
 
@@ -53,7 +45,7 @@ public class MainTela extends javax.swing.JFrame {
         textFieldMain.setText("0");
         textFieldMain.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        btnLimparProximo.setText("<--");
+        btnLimparProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/apagar.png"))); // NOI18N
         btnLimparProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparProximoActionPerformed(evt);
@@ -144,35 +136,35 @@ public class MainTela extends javax.swing.JFrame {
             }
         });
 
-        btnSoma.setText("+");
+        btnSoma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soma.png"))); // NOI18N
         btnSoma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSomaActionPerformed(evt);
             }
         });
 
-        btnSubtracao.setText("-");
+        btnSubtracao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/subtracao.png"))); // NOI18N
         btnSubtracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubtracaoActionPerformed(evt);
             }
         });
 
-        btnMultiplicacao.setText("*");
+        btnMultiplicacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/multiplicacao.png"))); // NOI18N
         btnMultiplicacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMultiplicacaoActionPerformed(evt);
             }
         });
 
-        btnDivisao.setText("/");
+        btnDivisao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/divisao.png"))); // NOI18N
         btnDivisao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDivisaoActionPerformed(evt);
             }
         });
 
-        btnCalcular.setText("=");
+        btnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/igual.png"))); // NOI18N
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCalcularActionPerformed(evt);
@@ -282,78 +274,75 @@ public class MainTela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparProximoActionPerformed
-        
-        rmNumber();
-        
+
     }//GEN-LAST:event_btnLimparProximoActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
-        addNumber("7");
+
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
-        addNumber("8");
+
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
-        addNumber("9");
+
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
-        addNumber("4");
+
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        addNumber("5");
+
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-        addNumber("6");
+
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        addNumber("1");
+
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        addNumber("2");
+
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-        addNumber("3");
+
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
-        addNumber("0");
+
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPontoActionPerformed
-        dotIsUsed = true;
-        addNumber(".");
+
     }//GEN-LAST:event_btnPontoActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        clear();
+
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnSomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSomaActionPerformed
-        makeOperation("+");
+
     }//GEN-LAST:event_btnSomaActionPerformed
 
     private void btnSubtracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubtracaoActionPerformed
-        makeOperation("-");
+
     }//GEN-LAST:event_btnSubtracaoActionPerformed
 
     private void btnMultiplicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicacaoActionPerformed
-        makeOperation("x");
+
     }//GEN-LAST:event_btnMultiplicacaoActionPerformed
 
     private void btnDivisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivisaoActionPerformed
-        makeOperation("/");
+
     }//GEN-LAST:event_btnDivisaoActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     public static void main(String args[]) {
@@ -411,60 +400,4 @@ public class MainTela extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField textFieldMain;
     // End of variables declaration//GEN-END:variables
-
-    private void addNumber(String number){
-        
-        if(textoPrincipal.equals("0")){
-            
-            textoPrincipal = number;
-            
-        }else{
-            
-            textoPrincipal += number;
-            
-        }
-        
-        updateComponents();
-        
-    }
-    
-    private void rmNumber(){
-
-        char lastChar = textoPrincipal.charAt(textoPrincipal.length()-1);
-        
-        if(lastChar == '.'){
-            dotIsUsed = false;
-        }
-        
-        textoPrincipal = textoPrincipal.substring(0, textoPrincipal.length()-1);
-        updateComponents();
-        
-    }
-
-    private void updateComponents(){
-        
-        if(textoPrincipal.isEmpty()){
-            textoPrincipal = "0";
-        }
-        textFieldMain.setText(textoPrincipal);
-        btnPonto.setEnabled(!dotIsUsed);
-        
-    }
-    
-    private void clear(){
-        
-        textoPrincipal = "";
-        dotIsUsed = false;
-        updateComponents();
-        
-    }
-    
-    private void makeOperation(String operator){
-        
-        dotIsUsed = false;
-        textoPrincipal += operator;
-        updateComponents();
-        
-    }
-    
 }
