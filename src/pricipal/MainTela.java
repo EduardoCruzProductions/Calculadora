@@ -1,13 +1,16 @@
-
 package pricipal;
 
+import util.StringCalculator;
 
 public class MainTela extends javax.swing.JFrame {
-    
+
+    private String mainText = "0";
+    private String operacao = "";
+
     public MainTela() {
-        
+
         initComponents();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +43,7 @@ public class MainTela extends javax.swing.JFrame {
         setTitle("Calculadora");
         setResizable(false);
 
+        textFieldMain.setEditable(false);
         textFieldMain.setFont(new java.awt.Font("Dialog", 0, 52)); // NOI18N
         textFieldMain.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         textFieldMain.setText("0");
@@ -275,74 +279,128 @@ public class MainTela extends javax.swing.JFrame {
 
     private void btnLimparProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparProximoActionPerformed
 
+        remove();
+
     }//GEN-LAST:event_btnLimparProximoActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
-
+        addValue("7");
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
+
+        addValue("8");
 
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
 
+        addValue("9");
+
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+
+        addValue("4");
 
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
 
+        addValue("5");
+
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
+
+        addValue("6");
 
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
 
+        addValue("1");
+
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+
+        addValue("2");
 
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
 
+        addValue("3");
+
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
+
+        addValue("0");
 
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPontoActionPerformed
 
+        addValue(".");
+        btnPonto.setEnabled(false);
+
     }//GEN-LAST:event_btnPontoActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
 
+        clear();
+        
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnSomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSomaActionPerformed
+
+        addValue("+");
+        defineOp("+");
 
     }//GEN-LAST:event_btnSomaActionPerformed
 
     private void btnSubtracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubtracaoActionPerformed
 
+        addValue("-");
+        defineOp("-");
+
     }//GEN-LAST:event_btnSubtracaoActionPerformed
 
     private void btnMultiplicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicacaoActionPerformed
+
+        addValue("x");
+        defineOp("x");
 
     }//GEN-LAST:event_btnMultiplicacaoActionPerformed
 
     private void btnDivisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivisaoActionPerformed
 
+        addValue("/");
+        defineOp("/");
+
     }//GEN-LAST:event_btnDivisaoActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
 
+        if(!operacao.isEmpty()){
+            
+            StringCalculator calc = new StringCalculator();
+            double d = calc.calcular(mainText, operacao);
+            mainText = Double.toString(d);
+            
+            updateComponents();
+            defineOp("");
+            
+            if(mainText.contains(".")){
+                
+                btnPonto.setEnabled(false);
+                
+            }
+            
+        }
+        
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     public static void main(String args[]) {
@@ -400,4 +458,75 @@ public class MainTela extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField textFieldMain;
     // End of variables declaration//GEN-END:variables
+
+    private void addValue(String v) {
+
+        if (!v.equals(".")) {
+            if (mainText.equals("0")) {
+                mainText = "";
+            }
+        }
+
+        mainText += v;
+        updateComponents();
+        
+    }
+
+    private void updateComponents() {
+
+        if (mainText.isEmpty()) {
+            mainText = "0";
+        }
+        textFieldMain.setText(mainText);
+
+    }
+
+    private void remove() {
+
+        char lastC = mainText.charAt(mainText.length() - 1);
+
+        if (lastC == '.') {
+            btnPonto.setEnabled(true);
+        } else if (lastC == '+' || lastC == '-' || lastC == 'x' || lastC == '/') {
+            defineOp("");
+        }
+
+        mainText = mainText.substring(0,
+                mainText.length() - 1);
+        updateComponents();
+
+    }
+
+    private void defineOp(String op) {
+
+        operacao = op;
+
+        if (op.isEmpty()) {
+
+            btnSoma.setEnabled(true);
+            btnSubtracao.setEnabled(true);
+            btnMultiplicacao.setEnabled(true);
+            btnDivisao.setEnabled(true);
+
+        } else {
+
+            btnSoma.setEnabled(false);
+            btnSubtracao.setEnabled(false);
+            btnMultiplicacao.setEnabled(false);
+            btnDivisao.setEnabled(false);
+            btnPonto.setEnabled(true);
+
+        }
+
+    }
+    
+    private void clear(){
+        
+        mainText = "0";
+        defineOp("");
+        btnPonto.setEnabled(true);
+        updateComponents();
+        
+    }
+
 }
